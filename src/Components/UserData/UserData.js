@@ -53,7 +53,7 @@ const UserData = () => {
 
     return (
         <>
-            <div className="row w-100">
+            <div className="row w-100 mt-3">
                 <div className="col-mb-3 col-12 text-center">
                     <div className="row">
                         <div className="col-md-6">

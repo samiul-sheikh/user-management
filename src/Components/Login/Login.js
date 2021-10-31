@@ -7,8 +7,12 @@ import { useHistory, useLocation } from 'react-router-dom';
 // import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 // import { faGoogle } from '@fortawesome/free-brands-svg-icons';
 import { Button } from 'react-bootstrap';
+import { useContext } from 'react';
+import { UserContext } from '../../App';
 
 const LogIn = () => {
+
+    const [loggedInUser, setLoggedInUser] = useContext(UserContext);
 
     const history = useHistory();
     const location = useLocation();
@@ -31,7 +35,7 @@ const LogIn = () => {
 
                 const { photoURL, displayName, email } = result.user;
                 const signedInUser = { image: photoURL, name: displayName, email: email }
-                console.log(signedInUser);
+                setLoggedInUser(signedInUser);
                 history.replace(from);
                 // console.log(signedInUser);
 
@@ -48,7 +52,8 @@ const LogIn = () => {
 
     return (
         <div className="text-center mt-5">
-            <h2>Hello</h2>
+            <h2>Hello!</h2>
+            <h6>To view user list sign in first</h6>
             <Button onClick={handleGoogleSignIn} variant="outline-primary">Continue with Google</Button>
         </div>
     );

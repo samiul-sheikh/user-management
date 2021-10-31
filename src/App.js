@@ -3,24 +3,35 @@ import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
 import Homepage from "./Components/Homepage/Homepage";
 import Login from "./Components/Login/Login";
 import AddUser from "./Components/AddUser/AddUser";
+import { createContext, useState } from 'react';
+import Navbar from "./Components/Navbar/Navbar";
+import PrivateRoute from "./Components/PrivateRoute/PrivateRoute";
+
+export const UserContext = createContext();
 
 function App() {
+
+    const [loggedInUser, setLoggedInUser] = useState({});
+
     return (
-        <div>
-            <Router>
-                <Switch>
-                    <Route exact path="/">
-                        <Homepage />
-                    </Route>
-                    <Route path="/login">
-                        <Login />
-                    </Route>
-                    <Route path="/addUser">
-                        <AddUser />
-                    </Route>
-                </Switch>
-            </Router>
-        </div>
+        <>
+            <UserContext.Provider value={[loggedInUser, setLoggedInUser]}>
+                <Router>
+                    <Navbar />
+                    <Switch>
+                        <PrivateRoute exact path="/">
+                            <Homepage />
+                        </PrivateRoute>
+                        <Route path="/login">
+                            <Login />
+                        </Route>
+                        <Route path="/addUser">
+                            <AddUser />
+                        </Route>
+                    </Switch>
+                </Router>
+            </UserContext.Provider>
+        </>
     );
 }
 
