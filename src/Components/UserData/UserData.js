@@ -9,30 +9,44 @@ const UserData = () => {
     const [users, setUsers] = useState([]);
     const [totalItems, setTotalItems] = useState(0);
     const [currentPage, setCurrentPage] = useState();
+    const [search, setSearch] = useState("");
 
-    const ITEMS_PER_PAGE = 50;
+    const ITEMS_PER_PAGE = 20;
 
-    // const headers = [
-    //     { name: "No", field: "id" },
-    //     { name: "Name", field: "name" },
-    //     { name: "Email", field: "email" },
-    //     { name: "Comment", field: "body" }
-    // ]
+    const headers = [
+        { name: "No", field: "id" },
+        { name: "Name", field: "name" },
+        { name: "Email", field: "email" },
+        { name: "Comment", field: "body" }
+    ]
 
     useEffect(() => {
-        fetch('https://jsonplaceholder.typicode.com/comments')
-            .then(res => res.json())
-            .then(data => setUsers(data))
+        const getData = () => {
+            fetch('https://jsonplaceholder.typicode.com/comments')
+                .then(res => res.json())
+                .then(data => {
+                    setUsers(data);
+                    console.log(data);
+                });
+        };
+        getData();
     }, []);
 
     const usersData = useMemo(() => {
         let computedUsers = users;
+        if (search) {
+            computedUsers = computedUsers.filter(
+                users =>
+                    users.name.toLowerCase().includes(search.toLowerCase()) ||
+                    users.email.toLowerCase().includes(search.toLowerCase())
+            )
+        }
         setTotalItems(computedUsers.length);
         // current page slice
         return computedUsers.slice(
             (currentPage - 1) * ITEMS_PER_PAGE,
-            (currentPage - 1) * ITEMS_PER_PAGE + ITEMS_PER_PAGE);
-    }, [users, currentPage]);
+            (currentPage - 1) * ITEMS_PER_PAGE + ITEMS_PER_PAGE)
+    }, [users, currentPage, search]);
 
     return (
         <>
@@ -48,17 +62,20 @@ const UserData = () => {
                             />
                         </div>
                         <div className="col-md-6 d-flex flex-row-reverse">
-                            <Search />
+                            <Search onSearch={(value) => {
+                                setSearch(value);
+                                setCurrentPage(1);
+                            }} />
                         </div>
                     </div>
                     <table className="table table-striped">
-                        <Header/>
+                        <Header headers={headers} />
                         <tbody>
                             {usersData.map((users) => (
                                 <tr>
                                     <td>{users.id}</td>
-                                    <td>{users.email}</td>
                                     <td>{users.name}</td>
+                                    <td>{users.email}</td>
                                     <td>{users.body}</td>
                                 </tr>
                             ))}

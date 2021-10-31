@@ -1,13 +1,12 @@
 import React from 'react';
 
-const Header = () => {
+const Header = ({ headers }) => {
     return (
         <thead>
             <tr>
-                <th scope="col">Id</th>
-                <th scope="col">Email</th>
-                <th scope="col">Post</th>
-                <th scope="col">Details</th>
+                {headers.map(head => (
+                    <th key={head.field}>{head.name}</th>
+                ))}
             </tr>
         </thead>
     );

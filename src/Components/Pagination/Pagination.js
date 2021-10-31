@@ -14,12 +14,12 @@ const PaginationData = ({ total = 0, itemsPerPage = 10, currentPage = 1, onPageC
     const paginationItems = useMemo(() => {
         const pages = [];
         for (let i = 1; i <= totalPages; i++) {
-            pages.push(<Pagination.Item key={i} active={i === currentPage} onClick={() => onPageChange(i)}>{i}</Pagination.Item>)
+            pages.push(<Pagination.Item key={i} active={i === currentPage} onClick={() => onPageChange(i)}>{i}</Pagination.Item>);
         }
         return pages;
     }, [totalPages, currentPage]);
 
-    if (totalPages === 0) return null;
+    // if (totalPages === 0) return null;
 
     return (
         <Pagination>
