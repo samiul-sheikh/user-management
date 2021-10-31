@@ -25,9 +25,9 @@ function App() {
                         <Route path="/login">
                             <Login />
                         </Route>
-                        <Route path="/addUser">
+                        <PrivateRoute path="/addUser">
                             <AddUser />
-                        </Route>
+                        </PrivateRoute>
                     </Switch>
                 </Router>
             </UserContext.Provider>
