@@ -4,8 +4,8 @@ import 'firebase/compat/auth';
 import 'firebase/compat/firestore';
 import firebaseConfig from '../../Config/firebase.config';
 import { useHistory, useLocation } from 'react-router-dom';
-// import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-// import { faGoogle } from '@fortawesome/free-brands-svg-icons';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faGoogle } from '@fortawesome/free-brands-svg-icons';
 import { Button } from 'react-bootstrap';
 import { useContext } from 'react';
 import { UserContext } from '../../App';
@@ -53,7 +53,7 @@ const LogIn = () => {
     return (
         <div className="text-center mt-5">
             <h2>Hello!</h2>
-            <Button onClick={handleGoogleSignIn} variant="outline-primary">Sign in using Google</Button>
+            <Button onClick={handleGoogleSignIn} variant="outline-primary"><FontAwesomeIcon icon={faGoogle} /> Sign in using Google</Button>
         </div>
     );
 };
