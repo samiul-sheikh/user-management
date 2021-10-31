@@ -16,7 +16,7 @@ const AddUser = () => {
             address: data.address
         };
 
-        const url = `http://localhost:8000/AddUser`;
+        const url = `https://shocking-catacombs-41932.herokuapp.com/addUser`;
         // console.log(usersData)
 
         fetch(url, {

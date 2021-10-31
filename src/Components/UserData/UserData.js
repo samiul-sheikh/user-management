@@ -8,7 +8,7 @@ const UserData = () => {
 
     const [users, setUsers] = useState([]);
     const [totalItems, setTotalItems] = useState(0);
-    const [currentPage, setCurrentPage] = useState();
+    const [currentPage, setCurrentPage] = useState(1);
     const [search, setSearch] = useState("");
 
     const ITEMS_PER_PAGE = 5;
@@ -25,7 +25,7 @@ const UserData = () => {
 
     useEffect(() => {
         const getData = () => {
-            fetch('http://localhost:8000/users')
+            fetch('https://shocking-catacombs-41932.herokuapp.com/users')
                 .then(res => res.json())
                 .then(data => {
                     setUsers(data);

@@ -53,8 +53,7 @@ const LogIn = () => {
     return (
         <div className="text-center mt-5">
             <h2>Hello!</h2>
-            <h6>To view user list sign in first</h6>
-            <Button onClick={handleGoogleSignIn} variant="outline-primary">Continue with Google</Button>
+            <Button onClick={handleGoogleSignIn} variant="outline-primary">Sign in using Google</Button>
         </div>
     );
 };
