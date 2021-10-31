@@ -11,18 +11,21 @@ const UserData = () => {
     const [currentPage, setCurrentPage] = useState();
     const [search, setSearch] = useState("");
 
-    const ITEMS_PER_PAGE = 20;
+    const ITEMS_PER_PAGE = 5;
 
     const headers = [
-        { name: "No", field: "id" },
         { name: "Name", field: "name" },
+        { name: "Title", field: "title" },
         { name: "Email", field: "email" },
-        { name: "Comment", field: "body" }
+        { name: "Phone", field: "phone" },
+        { name: "Date", field: "date" },
+        { name: "Time", field: "time" },
+        { name: "Address", field: "address" }
     ]
 
     useEffect(() => {
         const getData = () => {
-            fetch('https://jsonplaceholder.typicode.com/comments')
+            fetch('http://localhost:8000/users')
                 .then(res => res.json())
                 .then(data => {
                     setUsers(data);
@@ -38,7 +41,7 @@ const UserData = () => {
             computedUsers = computedUsers.filter(
                 users =>
                     users.name.toLowerCase().includes(search.toLowerCase()) ||
-                    users.email.toLowerCase().includes(search.toLowerCase())
+                    users.phone.toLowerCase().includes(search.toLowerCase())
             )
         }
         setTotalItems(computedUsers.length);
@@ -73,10 +76,13 @@ const UserData = () => {
                         <tbody>
                             {usersData.map((users) => (
                                 <tr>
-                                    <td>{users.id}</td>
                                     <td>{users.name}</td>
+                                    <td>{users.title}</td>
                                     <td>{users.email}</td>
-                                    <td>{users.body}</td>
+                                    <td>{users.phone}</td>
+                                    <td>{users.date}</td>
+                                    <td>{users.time}</td>
+                                    <td>{users.address}</td>
                                 </tr>
                             ))}
                         </tbody>

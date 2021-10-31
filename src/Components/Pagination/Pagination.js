@@ -2,7 +2,7 @@ import React, { useMemo, useState } from 'react';
 import { useEffect } from 'react';
 import { Pagination } from 'react-bootstrap';
 
-const PaginationData = ({ total = 0, itemsPerPage = 10, currentPage = 1, onPageChange }) => {
+const PaginationData = ({ total = 0, itemsPerPage = 2, currentPage = 1, onPageChange }) => {
 
     const [totalPages, setTotalPages] = useState(0);
 

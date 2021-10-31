@@ -12,6 +12,7 @@ const AddUser = () => {
             email: data.email,
             phone: data.phone,
             date: data.date,
+            time: data.time,
             address: data.address
         };
 
@@ -57,6 +58,11 @@ const AddUser = () => {
                         <label for="exampleInputDate" class="form-label">Pick a Date</label>
                         <input type="date" ref={register({ required: true })} name="date" placeholder="Enter date" className="form-control" />
                         {errors.date && <span className="text-danger">this field is required</span>}
+                    </div>
+                    <div className="form-group mb-3">
+                        <label for="exampleInputTime" class="form-label">Pick a Time</label>
+                        <input type="time" ref={register({ required: true })} name="time" placeholder="Time" className="form-control" />
+                        {errors.time && <span className="text-danger">this field is required</span>}
                     </div>
                     <div className="form-group mb-3">
                         <label for="exampleInputAddress" class="form-label">User Address</label>
